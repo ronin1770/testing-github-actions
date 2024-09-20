@@ -19,5 +19,6 @@ def get_gold_price():
         print("Failed to retrieve data. Check your API key and try again.")
 
 while True:
-    get_gold_price()
+    #get_gold_price()
+    print("I am a server.....")
     time.sleep(3)
