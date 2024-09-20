@@ -1,12 +1,24 @@
-FROM python:3.9
-RUN ls -la
-RUN echo "------------------------------------------"
-RUN mkdir -p /v1  # Create the /app directory if it doesn't exist
+#FROM python:3.9
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
 
-WORKDIR /v1       # Set the working directory
-RUN echo "Inside /v1"
-RUN ls -la
-RUN echo "------------------------------------------"
+# Set the working directory in the container
+WORKDIR /app
 
-COPY app.py ./      # Copy app.py into the /app directory
-CMD ["python3", "app.py"]
+# Copy the requirements file to the container
+COPY requirements.txt .
+
+# Install the Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the current directory contents into the container at /app
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 8080
+
+# Define environment variable
+ENV PYTHONUNBUFFERED=1
+
+# Command to run the app
+CMD ["python", "app.py"]
