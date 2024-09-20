@@ -2,10 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: python-app-deployment
-  labels:
-    app: python-app
 spec:
-  replicas: 2  # Adjust the number of replicas if needed
+  replicas: 1
   selector:
     matchLabels:
       app: python-app
@@ -16,9 +14,6 @@ spec:
     spec:
       containers:
       - name: python-app-container
-        image: python:3.9  # You can customize this to your Python version or use a custom image.
-        command: ["python3"]
-        args: ["app.py"]
+        image: munirfarhan/python-app:latest
         ports:
-        - containerPort: 5000  # Assuming your app runs on port 5000.        
-      restartPolicy: Always
+        - containerPort: 8080
