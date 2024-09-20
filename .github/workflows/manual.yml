@@ -43,9 +43,8 @@ jobs:
       - name: Apply Kubernetes Deployment
         run: |
           kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/service.yaml
-
+          
       - name: Deploy to Kubernetes
         run: |
           kubectl set image deployment/python-app-deployment python-app-container=${{ secrets.DOCKER_USERNAME }}/python-app:latest
-          kubectl apply -f k8s/service.yaml
+          
