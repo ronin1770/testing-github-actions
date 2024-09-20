@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app-deployment
+  labels:
+    app: python-app
+spec:
+  replicas: 2  # Adjust the number of replicas if needed
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-app-container
+        image: python:3.9  # You can customize this to your Python version or use a custom image.
+        command: ["python3"]
+        args: ["app.py"]
+        ports:
+        - containerPort: 5000  # Assuming your app runs on port 5000.
+        volumeMounts:
+        - name: app-volume
+          mountPath: /usr/src/app
+      volumes:
+      - name: app-volume
+        hostPath:
+          path: /path/to/your/app  # Host path where your `app.py` is located (optional if you're not using an image).
+      restartPolicy: Always
