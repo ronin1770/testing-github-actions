@@ -1,5 +1,6 @@
 import requests
 import datetime
+import time
 
 # Simple method for getting gold prices
 def get_gold_price():
@@ -17,4 +18,6 @@ def get_gold_price():
     else:
         print("Failed to retrieve data. Check your API key and try again.")
 
-get_gold_price()
+while True:
+    get_gold_price()
+    time.sleep(3)
