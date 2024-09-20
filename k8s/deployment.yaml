@@ -20,12 +20,5 @@ spec:
         command: ["python3"]
         args: ["app.py"]
         ports:
-        - containerPort: 5000  # Assuming your app runs on port 5000.
-        volumeMounts:
-        - name: app-volume
-          mountPath: /usr/src/app
-      volumes:
-      - name: app-volume
-        hostPath:
-          path: /path/to/your/app  # Host path where your `app.py` is located (optional if you're not using an image).
+        - containerPort: 5000  # Assuming your app runs on port 5000.        
       restartPolicy: Always
